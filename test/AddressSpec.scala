@@ -8,36 +8,6 @@ class AddressSpec extends Specification with DataTables {
 	import models._
 	import enums._
 
-  //  "create an xml file in the specified output directory, handling file separators" in {
-  //       "output dir" |   "spec name" |   "file path"             |>
-  //       ""           !   "spec1"     !   "./spec1.xml"           |  
-  //       "result"     !   "spec1"     !   "./result/spec1.xml"    |  
-  //       "result/"    !   "spec1"     !   "./result/spec1.xml"    |  
-  //       "result\\"   !   "spec1"     !   "./result/spec1.xml"    |  
-  //       "/result"    !   "spec1"     !   "/result/spec1.xml"     |
-  //       "\\result"   !   "spec1"     !   "/result/spec1.xml"     |
-  //       "result/xml" !   "spec1"     !   "./result/xml/spec1.xml"| { (dir, spec, result) =>
-  //           xmlRunner.outputDir = dir
-  //           spec1.name = spec
-  //           xmlRunner.execute
-  //           xmlRunner.files must haveKey(result)
-  //       }
-  //    }
-  
-//   "Computer model" should {
-//    
-//    "be retrieved by id" in {
-//      running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
-//        
-//        val Some(macintosh) = Computer.findById(21)
-//      
-//        macintosh.name must equalTo("Macintosh")
-//        macintosh.introduced must beSome.which(dateIs(_, "1984-01-24"))  
-//        
-//      }
-//    }
-//   }
-
   "An Address" should {
     "be creatable" in {
     	
@@ -62,19 +32,4 @@ class AddressSpec extends Specification with DataTables {
       }
     }
   }
-
-  //    "An Address in Ohio should have state OH" in {
-  //    
-  //    running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
-  //      inTransaction {
-  //	    AppDB.printDdl(println(_))
-  //	    AppDB.create
-  //        val facility = AppDB.facilities insert Facility("foo","1-740-111-1111")
-  //        facility.id should not equal(0)
-  //        val address = AppDB.addressTable insert Address("foo","foo","foo",State.OH,"foo",facility.id)
-  //        address.state should equal(State.OH)
-  //      }
-  //    }
-  //  }
-
 }
