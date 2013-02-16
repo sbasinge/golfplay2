@@ -56,6 +56,7 @@ class AddressSpec extends Specification with DataTables {
                 val address = AppDB.addressTable insert Address(line1, line2, city, state, zip, facility.id)
                 println(address)
                 address.id must be not equalTo(0)
+                address.facilityId must be equalTo(facility.id)
             }
         }
       }
