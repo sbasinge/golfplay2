@@ -1,13 +1,11 @@
-@(facilityForm: Form[Facility])
+@(facilityForm: Form[Facility], messageType: String)
 
 @import helper._
 @import helper.twitterBootstrap._
 
-@main("") {
+@main(messageType+" a Facility") {
     
-    <h1>Add a Facility</h1>
-    
-    @form(routes.FacilityController.save()) {
+    @helper.form(routes.FacilityController.save(messageType)) {
         
         <fieldset>
         
@@ -19,7 +17,7 @@
         </fieldset>
         
         <div class="actions">
-            <input type="submit" value="Create this facility" class="btn primary"> or 
+            <input type="submit" value="Save this facility" class="btn primary"> or 
             <a href="@routes.FacilityController.list()" class="btn">Cancel</a> 
         </div>
         

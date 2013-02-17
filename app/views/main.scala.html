@@ -13,21 +13,29 @@
 </head>
 <body>
 	<div class="hero-unit" style="height: 40px">
-		<h1>Welcome to Golf Plus!</h1>
+		<h1>@title</h1>
+	</div>
+        <div class="container">
 
-	</div>
-	
-	<div>
-		@content
-	</div>
+            <div class="content">
+                <div class="row">
+                    <div class="span14">
+                        @content
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+				<div class="navbar navbar-fixed-bottom">
+					GolfPlus: v<span>2.0</span>
+				</div>
+            </footer>
+        </div>
 
 	<ul class="nav nav-pills">
 		<li><a href="/facilities/list">Facilities</a></li>
 	</ul>
 	
-	<div class="navbar navbar-fixed-bottom">
-		GolfPlus: v<span>2.0</span>
-	</div>
 
 </body>
 </html>
