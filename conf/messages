@@ -1,0 +1,3 @@
+# Messages
+error.phone=Invalid Phone Number
+constraint.phone=Match Regex

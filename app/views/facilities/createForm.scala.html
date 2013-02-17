@@ -1,0 +1,28 @@
+@(facilityForm: Form[Facility])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("") {
+    
+    <h1>Add a Facility</h1>
+    
+    @form(routes.FacilityController.save()) {
+        
+        <fieldset>
+        
+            @inputText(facilityForm("name"), '_label -> "Facility name")
+            @inputText(facilityForm("phone"), '_label -> "Phone")
+
+            
+
+        </fieldset>
+        
+        <div class="actions">
+            <input type="submit" value="Create this facility" class="btn primary"> or 
+            <a href="@routes.FacilityController.list()" class="btn">Cancel</a> 
+        </div>
+        
+    }
+    
+}
