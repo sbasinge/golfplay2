@@ -24,12 +24,13 @@ class AddressSpec extends Specification with DataTables {
             1 ! "foo1" ! "foo" ! "foo" ! State.OH ! "foo" |
             2 ! "foo2" ! "foo" ! "foo" ! State.NC ! "foo" |
             3 ! "foo3" ! "foo" ! "foo" ! State.VA ! "foo" |> {
-              (justIgnoreMe, line1, line2, city, state, zip) =>
+              (numAddresses, line1, line2, city, state, zip) =>
 
                 val address = AppDB.addressTable insert Address(line1, line2, city, state, zip, facility.id)
                 println(address)
                 address.id must be not equalTo(0)
                 address.facilityId must be equalTo(facility.id)
+                facility.addresses.size must be equalTo(numAddresses)
             }
         }
       }

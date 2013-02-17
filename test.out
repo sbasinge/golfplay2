@@ -1,0 +1,50 @@
+[info] Loading project definition from C:\Users\Scott\git\golfplay2\project
+[info] Set current project to golfplay2 (in build file:/C:/Users/Scott/git/golfplay2/)
+Address(foo1,foo,foo,Ohio,foo,1)
+Address(foo2,foo,foo,North Carolina,foo,1)
+Address(foo3,foo,foo,Virginia,foo,1)
+[info] AddressSpec
+[info] 
+[info] An Address should
+[info] + be creatable
+[info]  
+[info]  
+[info] Total for specification AddressSpec
+[info] Finished in 1 second, 468 ms
+[info] 1 example, 0 failure, 0 error
+[info] 
+-- table declarations :
+create table Address (
+    city varchar(128) not null,
+    zip varchar(128) not null,
+    state int not null,
+    line1 varchar(128) not null,
+    id bigint not null primary key auto_increment,
+    line2 varchar(128) not null,
+    facilityId bigint not null
+  );
+create table Facility (
+    name varchar(128) not null,
+    id bigint not null primary key auto_increment,
+    phone varchar(128) not null
+  );
+create table Course (
+    name varchar(128) not null,
+    id bigint not null primary key auto_increment,
+    facilityId bigint not null
+  );
+-- foreign key constraints :
+alter table Address add constraint AddressFK1 foreign key (facilityId) references Facility(id);
+alter table Course add constraint CourseFK2 foreign key (facilityId) references Facility(id);
+Facility(foo,1-740-111-1111)
+Address(foo,foo,foo,Ohio,foo,1)
+[info] FacilitySpec:
+[info] A Facility 
+[info] - should be creatable
+Facility(foo,1-740-111-1111)
+Course(foo,1)
+[info] CourseSpec:
+[info] A Course 
+[info] - should be creatable
+[info] Passed: : Total 3, Failed 0, Errors 0, Passed 3, Skipped 0
+[success] Total time: 3 s, completed Feb 17, 2013 8:14:03 AM
