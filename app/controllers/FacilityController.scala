@@ -32,7 +32,14 @@ object FacilityController extends Controller {
   def facilityForm = Form(
     mapping(
       "name" -> nonEmptyText,
-      "phone" -> text.verifying(pattern(phoneRegex.r, "constraint.phone", "error.phone")))(Facility.apply)(Facility.unapply))
+      "phone" -> text.verifying(pattern(phoneRegex.r, "constraint.phone", "error.phone")))(Facility.apply)(Facility.unapply)
+  )
+
+  def editForm = Form(
+    mapping(
+      "name" -> nonEmptyText,
+      "phone" -> text.verifying(pattern(phoneRegex.r, "constraint.phone", "error.phone")))(Facility.apply)(Facility.unapply)
+  )
 
   def create = Action {
     Ok(html.facilities.form(facilityForm, "Add"))
