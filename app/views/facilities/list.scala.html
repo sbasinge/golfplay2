@@ -8,12 +8,14 @@
 			<tr>
 				<td>Name</td>
 				<td>Phone Number</td>
+				<td></td>
 			</tr>
 		</thead>
 	@for(facility <- facilities) {
 		<tr>
 			<td><a href="/facilities/@facility.id">@facility.name</a></td>
 			<td>@facility.phone</td>
+			<td><a href="/facilities/delete/@facility.id" class="btn">Delete</a> </td>
 		</tr>
     }
 	</table>

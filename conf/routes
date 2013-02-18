@@ -11,6 +11,7 @@ GET     /facilities/list            controllers.FacilityController.list
 GET     /facilities/new             controllers.FacilityController.create
 GET     /facilities/:id             controllers.FacilityController.edit(id: Long)
 POST    /facilities                 controllers.FacilityController.save(messageType: String, id: Long)
+GET     /facilities/delete/:id      controllers.FacilityController.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

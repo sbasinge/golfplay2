@@ -71,5 +71,12 @@ object FacilityController extends Controller {
     }
   }
 
+    def delete(id: Long) = Action {
+    inTransaction {
+      val existingFacility = AppDB.facilities.delete(id)
+      Home.flashing("success" -> "facility %s has been deleted".format(id))
+    }
+  }
+
 
 }
