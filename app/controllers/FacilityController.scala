@@ -9,6 +9,7 @@ import play.api.data.validation.Constraints._
 import org.squeryl.PrimitiveTypeMode._
 import views._
 import models._
+import org.squeryl.KeyedEntity
 
 object FacilityController extends Controller {
 
@@ -32,57 +33,43 @@ object FacilityController extends Controller {
   def facilityForm = Form(
     mapping(
       "name" -> nonEmptyText,
-      "phone" -> text.verifying(pattern(phoneRegex.r, "constraint.phone", "error.phone")))(Facility.apply)(Facility.unapply)
-  )
-
-  def editForm = Form(
-    mapping(
-      "name" -> nonEmptyText,
-      "phone" -> text.verifying(pattern(phoneRegex.r, "constraint.phone", "error.phone")))(Facility.apply)(Facility.unapply)
-  )
+      "phone" -> text.verifying(pattern(phoneRegex.r, "constraint.phone", "error.phone")))(Facility.apply)(Facility.unapply))
 
   def create = Action {
-    Ok(html.facilities.form(facilityForm, "Add"))
+    Ok(html.facilities.form(facilityForm, "Add", -1))
   }
 
   /**
    * Handle the 'new facility form' submission.
    */
-  def save(messageType: String) = Action { implicit request =>
+  def save(messageType: String, id: Long) = Action { implicit request =>
     facilityForm.bindFromRequest.fold(
-      formWithErrors => BadRequest(html.facilities.form(formWithErrors, messageType)),
-        facility =>
-          {
-            inTransaction {
-            	if (messageType == "Add") {
-            		AppDB.facilities.insert(facility)
-            		Home.flashing("success" -> "facility %s has been created".format(facility.name))
-            	} else {
-            		Logger.info(" About to update facility %s".format(facility))
-            	  AppDB.facilities.update(facility)
-            	  Home.flashing("success" -> "facility %s has been updated".format(facility.name))
-            	} 
+      formWithErrors => BadRequest(html.facilities.form(formWithErrors, messageType, id)),
+      facility =>
+        {
+          inTransaction {
+            if (messageType == "Add") {
+              AppDB.facilities.insert(facility)
+              Home.flashing("success" -> "facility %s has been created".format(facility.name))
+            } else {
+              Logger.info(" About to update facility %s".format(facility))
+              AppDB.facilities.update(n =>
+                where(n.id === id)
+                  set (
+                    n.name := facility.name,
+                    n.phone := facility.phone))
+              Home.flashing("success" -> "facility %s has been updated".format(facility.name))
             }
           }
-      )
+        })
   }
 
   def edit(id: Long) = Action {
     inTransaction {
       val existingFacility = AppDB.facilities.get(id)
-      Ok(html.facilities.form(facilityForm.fill(existingFacility), "Edit"))
+      Ok(html.facilities.form(facilityForm.fill(existingFacility), "Edit", existingFacility.id))
     }
   }
 
-  //  def update = Action { implicit request =>
-  //    facilityForm.bindFromRequest.fold(
-  //      formWithErrors => BadRequest(html.facilities.form(formWithErrors,"Edit")),
-  //      facility => {
-  //        inTransaction {
-  //          AppDB.facilities.insert(facility)
-  //          Home.flashing("success" -> "facility %s has been created".format(facility.name))
-  //        }
-  //      })
-  //  }
 
 }

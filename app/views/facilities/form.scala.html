@@ -1,11 +1,11 @@
-@(facilityForm: Form[Facility], messageType: String)
+@(facilityForm: Form[Facility], messageType: String, id: Long)
 
 @import helper._
 @import helper.twitterBootstrap._
 
 @main(messageType+" a Facility") {
     
-    @helper.form(routes.FacilityController.save(messageType)) {
+    @helper.form(routes.FacilityController.save(messageType, id)) {
         
         <fieldset>
             @inputText(facilityForm("name"), '_label -> "Facility name")
