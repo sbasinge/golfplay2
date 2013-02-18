@@ -16,7 +16,7 @@ class AddressSpec extends Specification with DataTables {
     	
       running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
         inTransaction {
-          AppDB.create
+//          AppDB.create
           val facility = AppDB.facilities insert Facility("foo", "1-740-111-1111")
           facility.id must be not equalTo(0)
           

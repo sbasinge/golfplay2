@@ -15,7 +15,7 @@ class FacilitySpec extends FlatSpec with ShouldMatchers {
     running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
       inTransaction {
 	    AppDB.printDdl(println(_))
-	    AppDB.create
+//	    AppDB.create
         val facility = AppDB.facilities insert Facility("foo","1-740-111-1111")
         facility.id should not equal(0)
         val address = AppDB.addressTable insert Address("foo","foo","foo",State.OH,"foo",facility.id)
