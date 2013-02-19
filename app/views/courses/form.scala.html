@@ -1,0 +1,23 @@
+@(courseForm: Form[Course], messageType: String, id: Long)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main(messageType+" a Course") {
+    
+    @helper.form(routes.CourseController.save(messageType, id)) {
+        
+        <fieldset>
+            @inputText(courseForm("name"), '_label -> "Name")
+            @inputText(courseForm("phone"), '_label -> "Phone")
+
+        </fieldset>
+        
+        <div class="actions">
+            <input type="submit" value="Save this course" class="btn primary"> or 
+            <a href="@routes.CourseController.list()" class="btn">Cancel</a> 
+        </div>
+        
+    }
+    
+}

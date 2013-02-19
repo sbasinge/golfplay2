@@ -14,15 +14,13 @@ class CourseSpec extends FlatSpec with ShouldMatchers {
     
     running(FakeApplication(additionalConfiguration = inMemoryDatabase())) {
       inTransaction {
-//	    AppDB.printDdl(println(_))
+	    AppDB.printDdl(println(_))
 //	    AppDB.create
-        val facility = AppDB.facilities insert Facility("foo","1-740-111-1111")
-        facility.id should not equal(0)
-        val course = AppDB.courses insert Course("foo",facility.id)
+        val address = AppDB.address insert Address("address line1","line2","city",State.OH,"43004")
+        address.id should not equal(0)
+        val course = AppDB.course insert Course("foo","1-111-111-1111",address.id)
         course.id should not equal(0)
-	    facility.courses.single.name should equal("foo")
-	    println(facility)
-	    println(facility.courses.single)
+        course.address.last.line1 should equal("address line1")
       }
     }
   }

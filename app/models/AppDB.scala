@@ -4,16 +4,12 @@ import org.squeryl._
 import org.squeryl.PrimitiveTypeMode._
 
 object AppDB extends Schema {
-  val addressTable = table[Address]
-  val facilities = table[Facility]
-  val courses = table[Course]
+  val address = table[Address]
+  val course = table[Course]
 
-  val facilityToAddresses =
-    oneToManyRelation(facilities, addressTable).
-      via((facility, address) => facility.id === address.facilityId)
+  val addressToCourses =
+    oneToManyRelation(address, course).
+      via((address, course) => address.id === course.addressId)
 
-  val facilityToCourses =
-    oneToManyRelation(facilities, courses).
-      via((facility, course) => facility.id === course.facilityId)
       
 }

@@ -5,13 +5,13 @@
 # Home page
 GET     /                           controllers.Application.index
 
-# Facilities page
-GET     /facilities                 controllers.FacilityController.list
-GET     /facilities/list            controllers.FacilityController.list
-GET     /facilities/new             controllers.FacilityController.create
-GET     /facilities/:id             controllers.FacilityController.edit(id: Long)
-POST    /facilities                 controllers.FacilityController.save(messageType: String, id: Long)
-GET     /facilities/delete/:id      controllers.FacilityController.delete(id: Long)
+# Courses page
+GET     /courses                 	controllers.CourseController.list
+GET     /courses/list            	controllers.CourseController.list
+GET     /courses/new             	controllers.CourseController.create
+GET     /courses/:id             	controllers.CourseController.edit(id: Long)
+POST    /courses                 	controllers.CourseController.save(messageType: String, id: Long)
+GET     /courses/delete/:id      	controllers.CourseController.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
