@@ -1,0 +1,34 @@
+@(message: String, addresses: Iterable[Address]) 
+@main("Maintain Courses") {
+
+
+<article  class="addresses" id="addresses">
+	<table class="table table-striped table-condensed table-hover">
+		<thead>
+			<tr>
+				<td>Line 1</td>
+				<td>Line 2</td>
+				<td>City</td>
+				<td>State</td>
+				<td>Zip</td>
+				<td></td>
+			</tr>
+		</thead>
+	@for(address <- addresses) {
+		<tr>
+			<td><a href="/addresses/@address.id">@address.line1</a></td>
+			<td>@address.line2</td>
+			<td>@address.city</td>
+			<td>@address.state</td>
+			<td>@address.zip</td>
+			<td><a href="/addresses/delete/@address.id" class="btn">Delete</a> </td>
+		</tr>
+    }
+	</table>
+</article>
+
+<ul class="nav nav-pills">
+	<li><a href="/addresses/new">Create</a></li>
+</ul>
+
+}

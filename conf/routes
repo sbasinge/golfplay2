@@ -7,11 +7,17 @@ GET     /                           controllers.Application.index
 
 # Courses page
 GET     /courses                 	controllers.CourseController.list
-GET     /courses/list            	controllers.CourseController.list
 GET     /courses/new             	controllers.CourseController.create
 GET     /courses/:id             	controllers.CourseController.edit(id: Long)
 POST    /courses                 	controllers.CourseController.save(messageType: String, id: Long)
 GET     /courses/delete/:id      	controllers.CourseController.delete(id: Long)
+
+# Addresses page
+GET     /addresses                 	controllers.AddressController.list
+GET     /addresses/new             	controllers.AddressController.create
+GET     /addresses/:id             	controllers.AddressController.edit(id: Long)
+POST    /addresses                 	controllers.AddressController.save(messageType: String, id: Long)
+GET     /addresses/delete/:id      	controllers.AddressController.delete(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

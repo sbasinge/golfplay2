@@ -1,0 +1,23 @@
+@(addressForm: Form[Address], messageType: String, id: Long)
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main(messageType+" an Address") {
+    
+    @helper.form(routes.AddressController.save(messageType, id)) {
+        
+        <fieldset>
+            @inputText(addressForm("line1"), '_label -> "Address Line 1")
+            @inputText(addressForm("line2"), '_label -> "Address Line 2")
+
+        </fieldset>
+        
+        <div class="actions">
+            <input type="submit" value="Save this address" class="btn primary"> or 
+            <a href="@routes.AddressController.list()" class="btn">Cancel</a> 
+        </div>
+        
+    }
+    
+}
